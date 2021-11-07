@@ -30,8 +30,8 @@ const ListClass = (props) => {
         />
       </header>
       <main className="lg:p-10">
-        <h1 className="justify-center text-center lg:p-5 lg:px-20 py-12 font-bold text-3xl tracking-wider">Daftar Kelas</h1>
-        <div className="grid justify-center lg:grid-cols-3 lg:grid-rows-7 gap-y-24 lg:px-48 lg:ml-40">
+        <h1 className="text-center lg:p-5 lg:px-20 py-12 font-bold text-3xl tracking-wider">Daftar Kelas</h1>
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 xl:grid-rows-7 gap-y-24 ml-0 pl-8 lg:pl-24 2xl:pl-72">
           {data.map((dt) => {
             return (
               <CardListClass key={dt.id} name={dt.name} desc={dt.description} to={`class/${dt.id}`} img={dt.images === null || undefined ? DetailContentImage : `${URL}${dt.images}`} />

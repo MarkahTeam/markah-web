@@ -45,18 +45,18 @@ const Home = (props) => {
         />
       </header>
       <main>
-        <section className="flex flex-col lg:flex-row space-x-20">
+        <section className="flex flex-col md:flex-row space-x-20">
           <div className="my-32 mx-24 space-y-8">
             <h2 className="text-3xl font-semibold">Kenapa harus belajar Programming ?</h2>
             <button className="bg-red-800 text-white w-40 rounded-lg p-2">Mari kita cari tau</button>
           </div>
-          <div>
+          <div className="md:my-8">
             <img src={PromoImage} />
           </div>
         </section>
 
-        <section className="flex flex-col lg:flex-row space-x-20">
-          <div className="mx-10">
+        <section className="flex flex-col md:flex-row space-x-20">
+          <div className="mx-10 lg:mx-10">
             <img src={WhyImage} />
           </div>
           <div className="my-32 mx-28 space-y-8 w-1/2 text-justify">

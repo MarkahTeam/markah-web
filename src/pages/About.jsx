@@ -19,7 +19,7 @@ const About = () => {
         />
       </header>
       <main>
-        <section className="lg:px-96 lg:p-20 pt-6 pl-4 bg-center lg:mx-40">
+        <section className="pt-6 pl-6 md:px-36 xl:px-96 bg-center xl:mx-40">
           <img src={MarkahLogo} />
         </section>
         <section className="p-20 text-justify text-xl font-medium tracking-wide">
@@ -31,7 +31,7 @@ const About = () => {
         <div className="w-full h-3 rounded-none bg-red-900"></div>
         <section className="p-10 bg-gray-900">
           <h1 className="text-2xl font-bold text-center tracking-wide text-white">OUR COUCHES</h1>
-          <div className="grid lg:grid-cols-4 grid-rows-8 gap-y-24 lg:px-28 mt-10 place-items-center">
+          <div className="grid lg:grid-cols-2 2xl:grid-cols-4 grid-rows-8 gap-y-24 md:px-28 place-items-center">
             <CardTutor name="M. Irfan Triananto" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas risus enim, eget euismod mauris rhoncus at. Quisque sit amet est imperdiet, bibendum metus eget, ullamcorper libero. Nulla facilisi." />
             <CardTutor name="Ahmad Ryadh" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas risus enim, eget euismod mauris rhoncus at. Quisque sit amet est imperdiet, bibendum metus eget, ullamcorper libero. Nulla facilisi." />
             <CardTutor name="Acmad Fadli Aditama" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas risus enim, eget euismod mauris rhoncus at. Quisque sit amet est imperdiet, bibendum metus eget, ullamcorper libero. Nulla facilisi." />
