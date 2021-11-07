@@ -5,42 +5,46 @@ import { Link } from 'react-router-dom';
 import { Logo } from '../assets';
 
 const Navbar = ({ home, register, articles, aboutus, faq }) => {
+  // const [isOpen, setIsOpen] = useState(false);
+  // const genericHamburgerLine = 'h-1 w-6 my-1 rounded-full bg-black transition ease transform duration-300';
   return (
     <>
-      <nav className="flex flex-col lg:flex-row rounded-l-lg">
-        <Link>
-          <div className="flex pb-4 px-28 lg:px-20 lg:my-2">
-            <img src={Logo} alt="Logo" />
-          </div>
-        </Link>
-        <div className="bg-red-900 w-auto lg:w-full lg:rounded-l-lg">
-          <ul className="flex space-x-10 p-0 lg:px-60 lg:my-2 text-md">
-            <li>
+      <nav className="flex flex-col sm:flex sm:flex-row rounded-l-lg ">
+        <div className="bg-white flex justify-center">
+          <Link to="/">
+            <div className="pb-4 px-20 my-2">
+              <img src={Logo} alt="Logo" />
+            </div>
+          </Link>
+        </div>
+        <div className="bg-red-900 w-full rounded-l-lg">
+          <div className="flex flex-col justify-center items-center text-lg sm:ml-20 sm:flex sm:flex-row sm:space-x-20 sm:mt-5">
+            <div>
               <Link className={home} to="/">
                 Home
               </Link>
-            </li>
-            <li>
+            </div>
+            <div>
               <Link className={register} to="/class">
                 Register
               </Link>
-            </li>
-            <li>
+            </div>
+            <div>
               <Link className={articles} to="/articles">
                 Articles
               </Link>
-            </li>
-            <li>
+            </div>
+            <div>
               <Link className={aboutus} to="/about">
                 About Us
               </Link>
-            </li>
-            <li>
+            </div>
+            <div>
               <Link className={faq} to="/faq">
                 FAQ
               </Link>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </nav>
     </>

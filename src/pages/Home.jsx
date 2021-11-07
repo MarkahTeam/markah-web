@@ -35,7 +35,7 @@ const Home = (props) => {
   };
   return (
     <>
-      <header className="px-0 sticky top-0 bg-white">
+      <header className="px-0 top-0">
         <Navbar
           home="text-white font-bold"
           register="text-white"
