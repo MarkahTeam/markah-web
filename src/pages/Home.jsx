@@ -14,7 +14,7 @@ import { getArticles } from '../redux/actions/article';
 const { REACT_APP_URL: URL } = process.env;
 import { ContentImage } from '../assets';
 import Swal from 'sweetalert2';
-
+import { Link } from 'react-router-dom';
 const Home = (props) => {
   const { data } = props.classes;
   const { data: article } = props.article;
@@ -61,19 +61,26 @@ const Home = (props) => {
         <section className="flex flex-col md:flex-row space-x-20">
           <div className="my-32 mx-24 space-y-8">
             <h2 className="text-3xl font-semibold">Kenapa harus belajar Programming ?</h2>
-            <button className="bg-red-800 text-white w-40 rounded-lg p-2">Mari kita cari tau</button>
+            <button onClick={() => window.location.replace('#why')} className="bg-red-800 text-white w-40 rounded-lg p-2">Mari kita cari tau</button>
           </div>
           <div className="md:my-8">
             <img src={PromoImage} />
           </div>
         </section>
 
-        <section className="flex flex-col md:flex-row space-x-20">
+        <section className="flex flex-col md:flex-row space-x-20" id="why">
           <div className="mx-10 lg:mx-10">
             <img src={WhyImage} />
           </div>
-          <div className="my-32 mx-28 space-y-8 w-1/2 text-justify">
-            <p className="text-xl font-regular tracking-wide">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+          <div className="my-20 leading-relaxed mx-28 space-y-8 w-1/2 text-justify">
+            <h1 className="font-bold text-2xl">Why?</h1>
+            <p className="text-xl font-regular tracking-wide">Simak dulu 3 alasan kenapa kamu harus belajar coding berikut ini:</p>
+            <ol className="font-bold list-decimal px-10 text-lg">
+              <li>Peluang Menjanjikan Di Masa Depan</li>
+              <li>Mengembangkan Kreativitas</li>
+              <li>Mengasah Kemampuan Problem Solving dan Logika
+              </li>
+            </ol>
           </div>
         </section>
 
