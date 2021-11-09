@@ -10,16 +10,18 @@ import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import { connect } from 'react-redux';
 import { getClass } from '../redux/actions/class';
+import { getArticles } from '../redux/actions/article';
 const { REACT_APP_URL: URL } = process.env;
 import { ContentImage } from '../assets';
 import Swal from 'sweetalert2';
 
 const Home = (props) => {
   const { data } = props.classes;
-  console.log('data class redux: ', data);
+  const { data: article } = props.article;
+  console.log('data article redux: ', article);
   useEffect(() => {
     props.getClass();
-    console.log('data useEfect class: ', data);
+    props.getArticles();
 
   }, []);
   const loadMore = () => {
@@ -29,7 +31,18 @@ const Home = (props) => {
     } else {
       Swal.fire({
         icon: 'error',
-        title: 'no more items'
+        title: 'no more class'
+      });
+    }
+  };
+  const loadMoreArticle = () => {
+    const { nextPage } = props.article.pageInfo;
+    if (nextPage !== null) {
+      props.getArticles(nextPage);
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'no more article'
       });
     }
   };
@@ -81,14 +94,14 @@ const Home = (props) => {
         <section className="bg-white py-10 h-full w-full">
           <h1 className="text-2xl text-center font-bold mb-10">Artikel</h1>
           <div className="grid lg:grid-cols-3 lg:grid-rows-7 gap-x-10 gap-y-24 ml-0">
-            <CardArtikel name="Hello" desc="Video on Demand Penjelasan Kelas 100rb jadi ......" id="/article-detail" />
-            <CardArtikel name="Hello" desc="Video on Demand Penjelasan Kelas 100rb jadi ......" />
-            <CardArtikel name="Hello" desc="Video on Demand Penjelasan Kelas 100rb jadi ......" />
-            <CardArtikel name="Hello" desc="Video on Demand Penjelasan Kelas 100rb jadi ......" />
-            <CardArtikel name="Hello" desc="Video on Demand Penjelasan Kelas 100rb jadi ......" />
+            {article.map((ar) => {
+              return (
+                <CardArtikel key={ar.id} name={ar.name} desc={ar.description} id={`article/${ar.id}`} img={`${URL}${ar.images}`} />
+              );
+            })}
           </div>
           <div className="my-10 flex justify-center items-center">
-            <button className="focus:outline-none text-white font-bold text-lg bg-red-900 px-16 py-4 rounded-lg lg:ml-9" >Load More</button>
+            <button className="focus:outline-none text-white font-bold text-lg bg-red-900 px-16 py-4 rounded-lg lg:ml-9" onClick={loadMoreArticle} >Load More</button>
           </div>
         </section>
       </main>
@@ -101,8 +114,10 @@ const Home = (props) => {
 
 const mapStateToProps = (state) => ({
   classes: state.classes,
+  article: state.article,
 });
 const mapDispatchToProps = {
   getClass,
+  getArticles
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

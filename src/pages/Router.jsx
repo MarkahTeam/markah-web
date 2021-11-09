@@ -16,8 +16,8 @@ const Router = () => {
         <Route path="/" exact component={Home} />
         <Route path="/class" exact component={ListClass} />
         <Route path="/class/:id" component={ClassDetail} />
-        <Route path="/article-detail" exact component={ArticleDetail} />
-        <Route path="/articles" exact component={ListArticles} />
+        <Route path="/article/:id" exact component={ArticleDetail} />
+        <Route path="/article" exact component={ListArticles} />
         <Route path="/about" exact component={About} />
       </Switch>
     </BrowserRouter>

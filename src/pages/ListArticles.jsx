@@ -1,10 +1,34 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-undef */
 /* eslint-disable indent */
-import React from 'react';
+import React, { useEffect } from 'react';
 import CardListArticle from '../components/CardListArticle';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
-const ListArticles = () => {
+import { connect } from 'react-redux';
+import { getArticles } from '../redux/actions/article';
+const { REACT_APP_URL: URL } = process.env;
+import Swal from 'sweetalert2';
+
+const ListArticles = (props) => {
+  const { data } = props.article;
+  console.log('data class redux: ', data);
+  useEffect(() => {
+    props.getArticles();
+    console.log('data useEfect class: ', data);
+
+  }, []);
+  const loadMoreArticle = () => {
+    const { nextPage } = props.article.pageInfo;
+    if (nextPage !== null) {
+      props.getArticles(nextPage);
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'no more article'
+      });
+    }
+  };
   return (
     <>
       <header className="px-0 sticky top-0 bg-white">
@@ -19,12 +43,14 @@ const ListArticles = () => {
       <main className="p-10">
         <h1 className="text-center p-5 lg:px-20 py-12 font-bold text-3xl tracking-wider">Daftar Artikel</h1>
         <div className="grid place-items-center grid-cols-1 grid-rows-1 gap-y-14 lg:px-28 ml-0">
-          <CardListArticle name="Kelas Markah" desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas risus enim, eget euismod mauris rhoncus at. Quisque sit amet est imperdiet, bibendum metus eget, ullamcorper libero. Nulla facilisi. Quisque rhoncus ligula sit amet volutpat condimentum. Aliquam erat volutpat. Phasellus sed tempor nisi, eu imperdiet metus. Nam finibus facilisis vestibulum. Fusce sed diam condimentum, euismod neque aliquet, dignissim nunc. Nam ac aliquet nisl. Suspendisse dapibus ultrices augue." />
-          <CardListArticle name="Kelas Markah" desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas risus enim, eget euismod mauris rhoncus at. Quisque sit amet est imperdiet, bibendum metus eget, ullamcorper libero. Nulla facilisi. Quisque rhoncus ligula sit amet volutpat condimentum. Aliquam erat volutpat. Phasellus sed tempor nisi, eu imperdiet metus. Nam finibus facilisis vestibulum. Fusce sed diam condimentum, euismod neque aliquet, dignissim nunc. Nam ac aliquet nisl. Suspendisse dapibus ultrices augue." />
-          <CardListArticle name="Kelas Markah" desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas risus enim, eget euismod mauris rhoncus at. Quisque sit amet est imperdiet, bibendum metus eget, ullamcorper libero. Nulla facilisi. Quisque rhoncus ligula sit amet volutpat condimentum. Aliquam erat volutpat. Phasellus sed tempor nisi, eu imperdiet metus. Nam finibus facilisis vestibulum. Fusce sed diam condimentum, euismod neque aliquet, dignissim nunc. Nam ac aliquet nisl. Suspendisse dapibus ultrices augue." />
+          {data.map((article) => {
+            return (
+              <CardListArticle key={article.id} name={article.name} img={`${URL}${article.images}`} desc={article.description} to={`article/${article.id}`} />
+            );
+          })}
         </div>
         <div className="my-10 flex justify-center items-center">
-          <button className="focus:outline-none ml-28  text-white font-bold text-lg bg-red-900 px-16 py-4 rounded-lg lg:ml-9" >LoadMore</button>
+          <button className="focus:outline-none ml-28  text-white font-bold text-lg bg-red-900 px-16 py-4 rounded-lg lg:ml-9" onClick={loadMoreArticle}>LoadMore</button>
         </div>
       </main>
       <footer>
@@ -33,5 +59,10 @@ const ListArticles = () => {
     </>
   );
 };
-
-export default ListArticles;
+const mapStateToProps = (state) => ({
+  article: state.article,
+});
+const mapDispatchToProps = {
+  getArticles,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ListArticles);

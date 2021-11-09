@@ -4,8 +4,10 @@
 
 import { combineReducers } from 'redux';
 import classes from './class';
+import article from './article';
 const reducer = combineReducers({
   classes,
+  article,
 });
 
 export default reducer;

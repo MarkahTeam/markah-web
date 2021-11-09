@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ContentImage } from '../assets';
-const CardKelas = ({ to, name, desc, img }) => {
+const CardKelas = ({ to, name, desc, img, onClick }) => {
   return (
     <div className="space-y-2 shadow-xl rounded-md bg-white w-82 h-56 flex flex-col justify-center items-center py-5">
       <h4 className="text-center flex-1 font-bold w-40 flex justify-center text-lg leading-tight">
@@ -17,7 +17,7 @@ const CardKelas = ({ to, name, desc, img }) => {
         />
         <div className="flex flex-col">
           <h5 className="text-yellow-900 text-sm text-justify font-normal"> {desc}</h5>
-          <Link to={to} className="bg-red-700 hover:bg-red-900 text-white text-center mt-3 rounded-md font-semibold">
+          <Link to={to} onClick={onClick} className="bg-red-700 hover:bg-red-900 text-white text-center mt-3 rounded-md font-semibold">
             see detail
           </Link>
         </div>
